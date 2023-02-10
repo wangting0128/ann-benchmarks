@@ -37,6 +37,7 @@ Evaluated
 * [vald](https://github.com/vdaas/vald)
 * [Qdrant](https://github.com/qdrant/qdrant)
 * [qsgngtlib](https://gitee.com/WPJIANG-gitee/hwtl_sdu-anns-qsgngtlib)
+* [milvus](https://github.com/milvus-io/milvus)
 
 Data sets
 =========
