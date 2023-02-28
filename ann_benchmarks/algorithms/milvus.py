@@ -42,7 +42,7 @@ class Milvus(BaseANN):
         fields = [FieldSchema(name="id", dtype=DataType.INT64, is_primary=True),
                   FieldSchema(name=self.anns_field, dtype=DataType.FLOAT_VECTOR, dim=self._dim)]
         schema = CollectionSchema(fields=fields)
-        self.collection = Collection(self.collection_name, schema=schema)
+        self.collection = Collection(self.collection_name, schema=schema, shards_num=1)
 
         entities = iter_data(X.tolist())
         for ent in entities:
@@ -60,7 +60,7 @@ class Milvus(BaseANN):
         if self._metric == 'angular':
             v /= numpy.linalg.norm(v)
         res = self.collection.search(data=[v.tolist()], anns_field=self.anns_field, param=self._search_param,
-                                     limit=n)
+                                     limit=n, consistency_level="Eventually")
         return res[0].ids
 
     def __str__(self):
